@@ -10,8 +10,12 @@ jobs:
         uses: actions/setup-node@v4.2.0
         with:
           node-version: 16.13.2
+          
       - name: Instalação do Mocha e pacotes para teste
         run: |
           cd src;
           npm install -g mocha;
           npm install;
+
+      - name: Execução dos testes
+        run: mocha src/test/convert.js
