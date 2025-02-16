@@ -1,0 +1,31 @@
+name: CI
+run-name: ${{ github.actor }} is learning GitHub Actions
+on: [push]
+jobs:
+  CI:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup do NodeJS
+        uses: actions/setup-node@v4.2.0
+        with:
+          node-version: 16.13.2
+          
+      - name: Instalação do Mocha e pacotes para teste
+        run: |
+          cd src;
+          npm install -g mocha;
+          npm install;
+
+      - name: Execução dos testes
+        run: mocha src/test/convert.js
+
+      - name: Build && push Docker images
+        uses: docker/build-push-action@v6.13.0
+        with:
+          context: src
+          file: Dockerfile
+          push: true
+          tags: |
+            felipeoliveira00/conversao-temperatura:v1
+            felipeoliveira00/conversao-temperatura:latest
