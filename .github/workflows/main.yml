@@ -2,12 +2,11 @@ name: CI
 run-name: ${{ github.actor }} is learning GitHub Actions
 on: [push]
 jobs:
-  check-bats-version:
+  CI:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Setup do NodeJS
+        uses: actions/setup-node@v4.2.0
         with:
-          node-version: '20'
-      - run: npm install -g bats
-      - run: bats -v
+          node-version: 16.13.2
