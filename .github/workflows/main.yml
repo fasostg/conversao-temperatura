@@ -33,5 +33,5 @@ jobs:
           file: src/Dockerfile
           push: true
           tags: |
-            felipeoliveira00/conversao-temperatura:v1
+            felipeoliveira00/conversao-temperatura:${{github.run_number}}
             felipeoliveira00/conversao-temperatura:latest
